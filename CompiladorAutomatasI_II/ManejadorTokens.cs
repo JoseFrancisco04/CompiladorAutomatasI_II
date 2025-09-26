@@ -8,12 +8,6 @@ namespace CompiladorAutomatasI_II
 {
     public class ManejadorTokens
     {
-        private List<string> tokens;
-
-        public ManejadorTokens()
-        {
-            tokens = new List<string>();
-        }
 
         public List <string> separarTokens(string codigo)
         {
@@ -63,18 +57,6 @@ namespace CompiladorAutomatasI_II
             }
             return lexemas;
 
-        }
-        public void GuardarTokens(List<string> lexemas)
-        {
-            tokens.Clear();
-            tokens.AddRange(lexemas);
-
-        }
-
-        //metodo para limpiar la lista de tokens
-        public void LimpiarTokens()
-        {
-            tokens.Clear();
         }
     }
 }
