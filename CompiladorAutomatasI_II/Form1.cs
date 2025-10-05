@@ -19,14 +19,16 @@ namespace CompiladorAutomatasI_II
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            
+            /*
             ManejadorTokens mt = new ManejadorTokens();
             List<String> tokens = mt.separarTokens(tbCode.Text);
             String output = "";
             for (int i = 0; i < tokens.Count; i++) { 
                 output += tokens[i].ToString() + "-";
             }
-            tbConsole.Text = output;
+             */
+            AnalizadorLexico al = new AnalizadorLexico();
+            tbConsole.Text = al.analizadorLexico(tbCode.Text).ToString();
         }
 
         private void Form1_Shown(object sender, EventArgs e)

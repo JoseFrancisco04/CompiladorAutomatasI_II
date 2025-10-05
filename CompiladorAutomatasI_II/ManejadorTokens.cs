@@ -41,7 +41,6 @@ namespace CompiladorAutomatasI_II
 
                     }
                     lexemas.Add(";");
-
                 }
                 else
                 {
