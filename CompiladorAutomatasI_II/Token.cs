@@ -6,37 +6,16 @@ using System.Threading.Tasks;
 
 namespace CompiladorAutomatasI_II
 {
-    public enum TipoToken
-    {
-        NUM,
-        PUNTO_Y_COMA,
-        INICIO,
-        FIN,
-        SUMAR,
-        RESTAR,
-        MULTIPLICAR,
-        DIVIDIR,
-        Y,
-        ERROR
-    }
 
     public class Token
     {
-        public TipoToken Tipo { get; set; }
-        public string Lexema { get; set; }
-        public string Patron { get; set; }
-
-        public Token(TipoToken tipo, string lexema, string patron)
+        public String value { get; set; }
+        public bool bandera {  get; set; }
+        
+        public Token(String value, bool bandera)
         {
-            Tipo = tipo;
-            Lexema = lexema;
-            Patron = patron;
-
-        }
-
-        public override string ToString()
-        {
-            return $"Tipo: {Tipo},Lexema: '{Lexema}', Patrón: '{Patron}'";
+            this.value = value;
+            this.bandera = bandera;
         }
     }
 }

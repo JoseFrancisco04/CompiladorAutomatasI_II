@@ -39,20 +39,20 @@ namespace CompiladorAutomatasI_II
             "V",
             "Y"
         ];
-        public bool analizadorLexico(String codigoFuente)
+        public List<Token> analizadorLexico(String codigoFuente)
         {
             ManejadorTokens mt = new ManejadorTokens();
-            List<String> tokens = mt.separarTokens(codigoFuente);
-            foreach (String token in tokens)
+            List<Token> tokens = mt.separarTokens(codigoFuente);
+            foreach (Token token in tokens)
             {
-                char[] caracteres = token.ToUpper().ToCharArray();
+                char[] caracteres = token.value.ToCharArray();
                 for (short i = 0; i < caracteres.Length; i++)
                 {
                     if (!alfabeto.Contains(caracteres[i].ToString()))
-                        return false;
+                        return null;
                 }
             }
-            return true;
+            return tokens;
         }
     }
 }

@@ -19,16 +19,20 @@ namespace CompiladorAutomatasI_II
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            /*
-            ManejadorTokens mt = new ManejadorTokens();
-            List<String> tokens = mt.separarTokens(tbCode.Text);
-            String output = "";
-            for (int i = 0; i < tokens.Count; i++) { 
-                output += tokens[i].ToString() + "-";
+            List<Token> tokens = AnalizadorSintactico.analizadorSintactico(tbCode.Text);
+            if (tokens != null)
+            {
+                String text = "";
+                foreach (Token token in tokens)
+                {
+                    text += token.value + " syntax= " + token.bandera.ToString() + "\n";
+                }
+                tbConsole.Text = text;
             }
-             */
-            AnalizadorLexico al = new AnalizadorLexico();
-            tbConsole.Text = al.analizadorLexico(tbCode.Text).ToString();
+            else
+            {
+                tbConsole.Text = "Lexical Error";
+            }
         }
 
         private void Form1_Shown(object sender, EventArgs e)

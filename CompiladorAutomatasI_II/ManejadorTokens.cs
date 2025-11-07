@@ -9,16 +9,17 @@ namespace CompiladorAutomatasI_II
     public class ManejadorTokens
     {
 
-        public List <string> separarTokens(string codigo)
+        public List<Token> separarTokens(string codigo)
         {
-           List<string> lexemas = new List<string>();
+
+            List<Token> lexemas = new List<Token>();
             if (string.IsNullOrEmpty(codigo))
             {
                 return lexemas;
 
             }
             string tokenActual = "";
-            for (int i = 0; i <codigo.Length; i++)
+            for (int i = 0; i < codigo.Length; i++)
             {
                 char c = codigo[i];
                 //si hay un espacio, tabulador o salto de linea
@@ -26,7 +27,7 @@ namespace CompiladorAutomatasI_II
                 {
                     if (!string.IsNullOrEmpty(tokenActual))
                     {
-                        lexemas.Add(tokenActual);
+                        lexemas.Add(new Token(tokenActual, false));
                         tokenActual = "";
 
                     }
@@ -36,11 +37,11 @@ namespace CompiladorAutomatasI_II
                 {
                     if (!string.IsNullOrEmpty(tokenActual))
                     {
-                        lexemas.Add(tokenActual);
+                        lexemas.Add(new Token(tokenActual, false));
                         tokenActual = "";
 
                     }
-                    lexemas.Add(";");
+                    lexemas.Add(new Token(";", false));
                 }
                 else
                 {
@@ -51,7 +52,7 @@ namespace CompiladorAutomatasI_II
             //procesar el ultimo token si existe
             if (!string.IsNullOrEmpty(tokenActual))
             {
-                lexemas.Add(tokenActual);
+                lexemas.Add(new Token(tokenActual, false));
 
             }
             return lexemas;
