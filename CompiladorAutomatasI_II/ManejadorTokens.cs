@@ -27,7 +27,7 @@ namespace CompiladorAutomatasI_II
                 {
                     if (!string.IsNullOrEmpty(tokenActual))
                     {
-                        lexemas.Add(new Token(tokenActual, false));
+                        lexemas.Add(new Token(tokenActual));
                         tokenActual = "";
 
                     }
@@ -37,11 +37,11 @@ namespace CompiladorAutomatasI_II
                 {
                     if (!string.IsNullOrEmpty(tokenActual))
                     {
-                        lexemas.Add(new Token(tokenActual, false));
+                        lexemas.Add(new Token(tokenActual));
                         tokenActual = "";
 
                     }
-                    lexemas.Add(new Token(";", false));
+                    lexemas.Add(new Token(";"));
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace CompiladorAutomatasI_II
             //procesar el ultimo token si existe
             if (!string.IsNullOrEmpty(tokenActual))
             {
-                lexemas.Add(new Token(tokenActual, false));
+                lexemas.Add(new Token(tokenActual));
 
             }
             return lexemas;

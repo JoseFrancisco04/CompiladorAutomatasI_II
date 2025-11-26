@@ -46,11 +46,16 @@ namespace CompiladorAutomatasI_II
             foreach (Token token in tokens)
             {
                 char[] caracteres = token.value.ToCharArray();
+                bool validadorLexico = true;
                 for (short i = 0; i < caracteres.Length; i++)
                 {
                     if (!alfabeto.Contains(caracteres[i].ToString()))
-                        return null;
+                    {
+                        validadorLexico = false;
+                        break;
+                    }
                 }
+                token.banderaLexico = validadorLexico;
             }
             return tokens;
         }

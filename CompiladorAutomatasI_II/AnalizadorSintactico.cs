@@ -17,6 +17,12 @@ namespace CompiladorAutomatasI_II
                 return null;
             foreach (Token token in tokens)
             {
+
+                if (!token.banderaLexico)
+                {
+                    token.bandera = false;
+                    continue;
+                }
                 char[] caracteres = token.value.ToUpper().ToCharArray();
                 switch (caracteres[0])// Se compara el primer caracter
                 {
@@ -56,7 +62,94 @@ namespace CompiladorAutomatasI_II
                         if (caracteres.Length == 1)// Solo debe ser un ";"
                             token.bandera = true;
                         break;
-                    default: // Grafo de números
+                    case 'S':
+                        if (caracteres.Length == 5 && caracteres[1] == 'U')
+                        {
+                            if (caracteres[2] == 'M')
+                            {
+                                if (caracteres[3] == 'A')
+                                {
+                                    if (caracteres[4] == 'R')
+                                    {
+                                        token.bandera = true;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 'R':
+                        if (caracteres.Length == 6 && caracteres[1] == 'E')
+                        {
+                            if (caracteres[2] == 'S')
+                            {
+                                if (caracteres[3] == 'T')
+                                {
+                                    if (caracteres[4] == 'A')
+                                    {
+                                        if (caracteres[5] == 'R')
+                                        {
+                                            token.bandera = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 'M':
+                        if (caracteres.Length == 11 && caracteres[1] == 'U')
+                        {
+                            if (caracteres[2] == 'L')
+                            {
+                                if (caracteres[3] == 'T')
+                                {
+                                    if (caracteres[4] == 'I')
+                                    {
+                                        if (caracteres[5] == 'P')
+                                        {
+                                            if (caracteres[6] == 'L')
+                                            {
+                                                if (caracteres[7] == 'I')
+                                                {
+                                                    if (caracteres[8] == 'C')
+                                                    {
+                                                        if (caracteres[9] == 'A')
+                                                        {
+                                                            if (caracteres[10] == 'R')
+                                                            {
+                                                                token.bandera = true;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 'D':
+                        if (caracteres.Length == 7 && caracteres[1] == 'I')
+                        {
+                            if (caracteres[2] == 'V')
+                            {
+                                if (caracteres[3] == 'I')
+                                {
+                                    if (caracteres[4] == 'D')
+                                    {
+                                        if (caracteres[5] == 'I')
+                                        {
+                                            if (caracteres[6] == 'R')
+                                            {
+                                                token.bandera = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case '0' or '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9':
                         if (caracteres.Length <= 4)// Verificar que solo sean 4 dígitos o menos.
                         {
                             token.bandera = true;// Al ser un número menor que 9999 es valido.
@@ -66,6 +159,10 @@ namespace CompiladorAutomatasI_II
                             }
                         }
                         break;
+                    default: // Grafo de números
+                          token.bandera = false;
+                        break;
+                        
                 }
             }
             return tokens;

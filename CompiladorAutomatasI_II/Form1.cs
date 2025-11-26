@@ -25,13 +25,13 @@ namespace CompiladorAutomatasI_II
                 String text = "";
                 foreach (Token token in tokens)
                 {
-                    text += token.value + " syntax= " + token.bandera.ToString() + "\n";
+                    text += token.value + " lexicon= "+ token.ObtenerErrorLexico() + " syntax= " + token.ObtenerErrorSintactico() + "\n";
                 }
                 tbConsole.Text = text;
             }
             else
             {
-                tbConsole.Text = "Lexical Error";
+                tbConsole.Text = "Error";
             }
         }
 

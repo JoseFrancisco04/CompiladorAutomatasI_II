@@ -11,11 +11,28 @@ namespace CompiladorAutomatasI_II
     {
         public String value { get; set; }
         public bool bandera {  get; set; }
-        
-        public Token(String value, bool bandera)
+        public bool banderaLexico { get; set; }
+
+
+        public Token(String value)
         {
             this.value = value;
-            this.bandera = bandera;
+        
+        }
+
+        public string ObtenerErrorSintactico()
+        {
+        
+            if (!bandera)
+                return "Error sintáctico";
+            return "SUCCESSFUL";
+        }
+
+        public string ObtenerErrorLexico()
+        {
+            if (!banderaLexico)
+                return "Error léxico";
+            return "SUCCESSFUL";
         }
     }
 }
