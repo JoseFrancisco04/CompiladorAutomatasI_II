@@ -9,7 +9,7 @@ namespace CompiladorAutomatasI_II
 {
     internal class AnalizadorSintactico
     {
-        public static List<Token> analizadorSintactico(String codigo)
+        public List<Token> analizadorSintactico(String codigo)
         {
             AnalizadorLexico al = new AnalizadorLexico();
             List<Token> tokens = al.analizadorLexico(codigo);
@@ -39,6 +39,7 @@ namespace CompiladorAutomatasI_II
                                         if (caracteres[5] == 'O')
                                         {
                                             token.bandera = true;
+                                           
                                         }
                                     }
                                 }
@@ -51,6 +52,7 @@ namespace CompiladorAutomatasI_II
                             if (caracteres[2] == 'N')
                             {
                                 token.bandera = true;
+                                
                             }
                         }
                         break;

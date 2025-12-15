@@ -12,6 +12,7 @@ namespace CompiladorAutomatasI_II
         public String value { get; set; }
         public bool bandera {  get; set; }
         public bool banderaLexico { get; set; }
+        public bool banderaSemantico { get; set; }
 
 
         public Token(String value)
@@ -32,6 +33,13 @@ namespace CompiladorAutomatasI_II
         {
             if (!banderaLexico)
                 return "Error léxico";
+            return "SUCCESSFUL";
+        }
+
+        public string ObtenerErrorSemantico()
+        {
+            if (!banderaSemantico)
+                return "Error semántico";
             return "SUCCESSFUL";
         }
     }

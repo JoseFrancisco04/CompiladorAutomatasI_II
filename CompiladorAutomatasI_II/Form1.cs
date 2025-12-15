@@ -19,13 +19,13 @@ namespace CompiladorAutomatasI_II
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            List<Token> tokens = AnalizadorSintactico.analizadorSintactico(tbCode.Text);
+            List<Token> tokens =AnalizadorSemantico.analizadorSemantico(tbCode.Text);
             if (tokens != null)
             {
                 String text = "";
                 foreach (Token token in tokens)
                 {
-                    text += token.value + " lexicon= "+ token.ObtenerErrorLexico() + " syntax= " + token.ObtenerErrorSintactico() + "\n";
+                    text += token.value + " lexicon= "+ token.ObtenerErrorLexico() + " syntax= " + token.ObtenerErrorSintactico() + " semantic= "+ token.ObtenerErrorSemantico() + "\n";
                 }
                 tbConsole.Text = text;
             }
