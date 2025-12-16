@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panelConsole = new System.Windows.Forms.Panel();
+            this.tbConsole = new System.Windows.Forms.RichTextBox();
             this.panelControl = new System.Windows.Forms.Panel();
+            this.btnStart = new System.Windows.Forms.Button();
             this.panelCode = new System.Windows.Forms.Panel();
             this.tbCode = new System.Windows.Forms.RichTextBox();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.tbConsole = new System.Windows.Forms.RichTextBox();
             this.panelConsole.SuspendLayout();
             this.panelControl.SuspendLayout();
             this.panelCode.SuspendLayout();
@@ -49,6 +49,21 @@
             this.panelConsole.Size = new System.Drawing.Size(684, 119);
             this.panelConsole.TabIndex = 0;
             // 
+            // tbConsole
+            // 
+            this.tbConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.tbConsole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbConsole.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tbConsole.Location = new System.Drawing.Point(0, 0);
+            this.tbConsole.Name = "tbConsole";
+            this.tbConsole.ReadOnly = true;
+            this.tbConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.tbConsole.Size = new System.Drawing.Size(684, 119);
+            this.tbConsole.TabIndex = 0;
+            this.tbConsole.Text = "Test Text";
+            // 
             // panelControl
             // 
             this.panelControl.Controls.Add(this.btnStart);
@@ -57,6 +72,22 @@
             this.panelControl.Name = "panelControl";
             this.panelControl.Size = new System.Drawing.Size(684, 35);
             this.panelControl.TabIndex = 1;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(100)))));
+            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.Location = new System.Drawing.Point(306, 6);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "|>";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // panelCode
             // 
@@ -80,37 +111,7 @@
             this.tbCode.TabIndex = 0;
             this.tbCode.Text = "Test Text";
             this.tbCode.WordWrap = false;
-            // 
-            // btnStart
-            // 
-            this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(100)))));
-            this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(306, 6);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "|>";
-            this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // tbConsole
-            // 
-            this.tbConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.tbConsole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbConsole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbConsole.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.tbConsole.Location = new System.Drawing.Point(0, 0);
-            this.tbConsole.Name = "tbConsole";
-            this.tbConsole.ReadOnly = true;
-            this.tbConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.tbConsole.Size = new System.Drawing.Size(684, 119);
-            this.tbConsole.TabIndex = 0;
-            this.tbConsole.Text = "Test Text";
+            this.tbCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCode_KeyPress);
             // 
             // Form1
             // 
@@ -123,7 +124,7 @@
             this.Controls.Add(this.panelConsole);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pseudocódigo Lupiliano";

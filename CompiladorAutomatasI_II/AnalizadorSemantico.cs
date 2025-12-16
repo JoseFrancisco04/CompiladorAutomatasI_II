@@ -10,10 +10,6 @@ namespace CompiladorAutomatasI_II
 {
     internal class AnalizadorSemantico
     {
-
-
-
-
         public static List<Token> analizadorSemantico(String codigo)
         {
             AnalizadorSintactico asin = new AnalizadorSintactico();
@@ -44,35 +40,47 @@ namespace CompiladorAutomatasI_II
 
 
                 }
-                //Este if verifica las operaciones aritmeticas SUMAR, RESTAR, MULTIPLICAR y DIVIDIR, te toca acompletarlo gei, solo falta esto pa:
-                //1.Marcar que la instrucccion de la operacion aritmetica sea valida en su estructura
-                //2.Checar que la instruccion aritmetica este dentro del bloque INICIO y FIN
-                //3.Que al dividir entre 0 marque error semantico
-                //y pues creo que es todo...si hace falta algo ahi lo agregas
-                //ver si se puede agregar mas de una operacion aritmetica entre INICIO y FIN o solo una operacion aritmetica...ahi le checas
+                //Este if verifica las operaciones aritmeticas SUMAR, RESTAR, MULTIPLICAR y DIVIDIR, algo más dificil chiquilla, solo falta esto pa:
+                //1.Marcar que la instrucccion de la operacion aritmetica sea valida en su estructura ✓
+                //2.Checar que la instruccion aritmetica este dentro del bloque INICIO y FIN ✓
+                //3.Que al dividir entre 0 marque error semantico ✓
+                //y pues creo que es todo...si hace falta algo ahi lo agregas (no pa, yo lo veo chulo)
+                //ver si se puede agregar mas de una operacion aritmetica entre INICIO y FIN
+                //o solo una operacion aritmetica...ahi le checas (Simón, sí se puede)
                 else if (token.value == "SUMAR" || token.value == "RESTAR" || token.value == "MULTIPLICAR" || token.value == "DIVIDIR")
                 {
-                    if (i + 4 < tokens.Count)
+                    //Verificar que esté despues de un inicio y antes de un fin
+                    if (contadorInicio == 1 && contadorFinal == 0)
                     {
-                        if (esNumero(tokens[i + 1].value) && tokens[i+2].value == "Y" && esNumero(tokens[i + 3].value) && tokens[i + 4].value == ";")
+                        if (i + 4 < tokens.Count)
                         {
-
+                            //Que se vea "NUMERO Y NUMERO;"
+                            if (esNumero(tokens[i + 1].value) && tokens[i + 2].value == "Y" && esNumero(tokens[i + 3].value) && tokens[i + 4].value == ";")
+                            {
+                                //En caso de ser división, que el segundo número no sea 0
+                                if (token.value == "DIVIDIR" && int.Parse(tokens[i + 3].value) <= 0)
+                                {
+                                    i = i + 4;
+                                }
+                                else
+                                {
+                                    token.banderaSemantico = true;
+                                    tokens[i + 1].banderaSemantico = true;
+                                    tokens[i + 2].banderaSemantico = true;
+                                    tokens[i + 3].banderaSemantico = true;
+                                    tokens[i + 4].banderaSemantico = true;
+                                    i = i + 4;
+                                }
+                            }
                         }
-
                     }
-                    else
-                    {
-                        token.banderaSemantico = false;
-                    }
-
-
                 }
                 //Esta regla semantica del if (FIN) verifica que la palabra FIN este al final del codigo junto con ; ademas de que solo exista una sola palabra FIN con la variable auxiliar contadorFinal
                 //Aqui tambien se verifica que haya una palabra INICIO valida antes de la palabra FIN
                 else if (token.value == "FIN")
                 {
                     contadorFinal++;
-                    
+
 
                     if (validarInicio == false)
                     {
@@ -105,11 +113,8 @@ namespace CompiladorAutomatasI_II
                     }
 
                 }
-                else
-                {
-                    return null; 
-                }
-
+                // No modificar nada en caso de no encontrar coincidencias
+                // del token, su valor predeterminado es false.
             }
 
             return tokens;
@@ -119,7 +124,14 @@ namespace CompiladorAutomatasI_II
         //Este metodo verfica que el valor sea un numero
         private static bool esNumero(string valor)
         {
-            int numero = int.Parse(valor);
+            try
+            {
+                int.Parse(valor);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
 
