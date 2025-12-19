@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panelConsole = new System.Windows.Forms.Panel();
-            this.tbConsole = new System.Windows.Forms.RichTextBox();
             this.panelControl = new System.Windows.Forms.Panel();
             this.btnStart = new System.Windows.Forms.Button();
             this.panelCode = new System.Windows.Forms.Panel();
             this.tbCode = new System.Windows.Forms.RichTextBox();
+            this.tbConsole = new System.Windows.Forms.RichTextBox();
             this.panelConsole.SuspendLayout();
             this.panelControl.SuspendLayout();
             this.panelCode.SuspendLayout();
@@ -49,23 +49,9 @@
             this.panelConsole.Size = new System.Drawing.Size(684, 119);
             this.panelConsole.TabIndex = 0;
             // 
-            // tbConsole
-            // 
-            this.tbConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.tbConsole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbConsole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbConsole.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
-            this.tbConsole.Location = new System.Drawing.Point(0, 0);
-            this.tbConsole.Name = "tbConsole";
-            this.tbConsole.ReadOnly = true;
-            this.tbConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.tbConsole.Size = new System.Drawing.Size(684, 119);
-            this.tbConsole.TabIndex = 0;
-            this.tbConsole.Text = "Test Text";
-            // 
             // panelControl
             // 
+            this.panelControl.BackColor = System.Drawing.Color.DarkGray;
             this.panelControl.Controls.Add(this.btnStart);
             this.panelControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl.Location = new System.Drawing.Point(0, 0);
@@ -101,21 +87,37 @@
             // tbCode
             // 
             this.tbCode.AcceptsTab = true;
-            this.tbCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.tbCode.BackColor = System.Drawing.Color.Black;
+            this.tbCode.DetectUrls = false;
             this.tbCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbCode.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(212)))), ((int)(((byte)(212)))));
+            this.tbCode.ForeColor = System.Drawing.Color.White;
             this.tbCode.Location = new System.Drawing.Point(0, 0);
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(684, 207);
-            this.tbCode.TabIndex = 0;
-            this.tbCode.Text = "Test Text";
-            this.tbCode.WordWrap = false;
+            this.tbCode.TabIndex = 2;
+            this.tbCode.Text = "Code Text";
+            this.tbCode.TextChanged += new System.EventHandler(this.tbCode_TextChanged);
             this.tbCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCode_KeyPress);
+            // 
+            // tbConsole
+            // 
+            this.tbConsole.AcceptsTab = true;
+            this.tbConsole.BackColor = System.Drawing.Color.Black;
+            this.tbConsole.DetectUrls = false;
+            this.tbConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbConsole.Font = new System.Drawing.Font("Cascadia Code", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbConsole.ForeColor = System.Drawing.Color.White;
+            this.tbConsole.Location = new System.Drawing.Point(0, 0);
+            this.tbConsole.Name = "tbConsole";
+            this.tbConsole.ReadOnly = true;
+            this.tbConsole.Size = new System.Drawing.Size(684, 119);
+            this.tbConsole.TabIndex = 0;
+            this.tbConsole.Text = "Test Text";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.ClientSize = new System.Drawing.Size(684, 361);
@@ -141,8 +143,8 @@
         private System.Windows.Forms.Panel panelConsole;
         private System.Windows.Forms.Panel panelControl;
         private System.Windows.Forms.Panel panelCode;
-        private System.Windows.Forms.RichTextBox tbCode;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.RichTextBox tbCode;
         private System.Windows.Forms.RichTextBox tbConsole;
     }
 }

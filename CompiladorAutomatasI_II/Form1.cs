@@ -13,6 +13,7 @@ namespace CompiladorAutomatasI_II
 {
     public partial class Form1 : Form
     {
+        private bool isUpdating = false;
         public Form1()
         {
             InitializeComponent();
@@ -24,15 +25,38 @@ namespace CompiladorAutomatasI_II
             
             if (tokens != null)
             {
-                String text = "";
+                tbConsole.Clear();
                 foreach (Token token in tokens)
                 {
-                    text += token.value + " lexicon= " + token.ObtenerErrorLexico() + " syntax= " + token.ObtenerErrorSintactico() + " semantic= " + token.ObtenerErrorSemantico() + "\n";
+                    tbConsole.SelectionColor = Color.White;
+                    tbConsole.AppendText(token.value +  "  ");
+
+                    tbConsole.AppendText("Lexicon= ");
+                    string lexiconResult = token.ObtenerErrorLexico();
+                    tbConsole.SelectionColor = lexiconResult == "SUCCESSFUL" ? Color.Green : Color.Red;
+                    tbConsole.AppendText(lexiconResult);
+
+                    tbConsole.SelectionColor = Color.White;
+                    tbConsole.AppendText(" Syntax= ");
+                    string syntaxResult = token.ObtenerErrorSintactico();
+                    tbConsole.SelectionColor = syntaxResult == "SUCCESSFUL" ? Color.Green : Color.Red;
+                    tbConsole.AppendText(syntaxResult);
+
+                    tbConsole.SelectionColor = Color.White;
+                    tbConsole.AppendText(" Semantic= ");
+                    string semanticoResultado = token.ObtenerErrorSemantico();
+                    tbConsole.SelectionColor = semanticoResultado == "SUCCESSFUL" ? Color.Green : Color.Red;
+                    tbConsole.AppendText(semanticoResultado);
+
+                    tbConsole.SelectionColor = Color.White;
+                    tbConsole.AppendText(" \n");
+
                 }
-                tbConsole.Text = text;
             }
             else
             {
+                tbConsole.Clear();
+                tbConsole.SelectionColor = Color.Red;
                 tbConsole.Text = "Error";
             }
         }
@@ -44,36 +68,81 @@ namespace CompiladorAutomatasI_II
             tbCode.Focus();
         }
 
+        private void tbCode_TextChanged(object sender, EventArgs e)
+        {
+            if (!isUpdating)
+            {
+                ColorearCodigo();
+
+            }
+
+        }
+
         private void tbCode_KeyPress(object sender, KeyPressEventArgs e)
         {
-            /*
-            System.Drawing.Color errorColor = Color.Red;
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BeginInvoke(new Action(()=> ColorearCodigo()));
+
+            }
+        }
+
+        private void ColorearCodigo()
+        {
+            if (string.IsNullOrWhiteSpace(tbCode.Text))
+                return;
+            isUpdating = true;
+
+            int posicionCursor = tbCode.SelectionStart;
 
             List<Token> tokens = AnalizadorSemantico.analizadorSemantico(tbCode.Text);
-            List<String> errorStrings = new List<String>();
-            List<int> errorIndex = new List<int>();
-            int indexes = 0;
-
-            foreach (Token token in tokens)
+            if (tokens != null)
             {
-                if (!token.bandera || !token.banderaLexico || !token.banderaSemantico)
+                tbCode.SelectAll();
+                tbCode.SelectionColor = Color.White;
+                tbCode.DeselectAll();
+
+                int posicionActual = 0;
+
+                foreach (Token token in tokens)
                 {
-                    errorStrings.Add(token.value);
-                    errorIndex.Add(indexes);
+                    int inicio = tbCode.Text.IndexOf(token.value, posicionActual, StringComparison.OrdinalIgnoreCase);
+
+                    if (inicio >=0)
+                    {
+                        tbCode.Select(inicio, token.value.Length);
+
+                        bool tieneError = !token.banderaLexico || !token.bandera || !token.banderaSemantico;
+
+                        if(tieneError)
+                        {
+                            tbCode.SelectionColor = Color.Red;
+                        }
+                        else
+                        {
+                            string valorUpper = token.value.ToUpper();
+                            if (valorUpper == "INICIO" || valorUpper == "FIN" || valorUpper == "Y" || valorUpper == ";")
+                            {
+                                tbCode.SelectionColor = Color.Green;
+                            }
+                            else if (valorUpper == "SUMAR" || valorUpper == "RESTAR" || valorUpper == "MULTIPLICAR" || valorUpper == "DIVIDIR")
+                            {
+                                tbCode.SelectionColor = Color.Orange;
+                            }
+                            else
+                            {
+                                tbCode.SelectionColor = Color.Blue;
+                            }
+                            
+                        }
+
+                        posicionActual = inicio + token.value.Length;
+                    }
                 }
-                indexes += token.value.Length;
+                tbCode.Select(posicionCursor, 0);
+                tbCode.SelectionColor = Color.White;
             }
-
-            for (int i = 0; i < errorStrings.Count; i++)
-            {
-                tbCode.SelectionStart = errorIndex[i];
-                tbCode.SelectionLength = errorStrings[i].Length;
-
-                tbCode.SelectionColor = errorColor;
-                tbCode.SelectionLength = 0;
-            }
-             */
-
+            isUpdating = false;
 
         }
     }
